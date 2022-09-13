@@ -1,1 +1,3 @@
 # lunchinator-2
+
+add instructions for installation, configuration, and testing...
