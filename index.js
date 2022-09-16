@@ -14,17 +14,21 @@ for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);
 	const command = require(filePath);
 
+	console.log(`Command: ${command.data.name} registered`);
 	client.commands.set(command.data.name, command);
 }
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const command = interaction.client.commands.get(interaction.command);
+	console.log(`command recieved: ${interaction.commandName}`);
+	const command = client.commands.get(interaction.commandName);
+	console.log(`command: ${command}`);
 
 	if (!command) return;
 
 	try {
+		console.log('executing command');
 		await command.execute(interaction);
 	}
 	catch (error) {
